@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <script src="index.js"></script>
-  <title>Studie</title>
+  <title>Shoppie</title>
 </head>
 
 <body>
@@ -16,11 +16,11 @@
     <nav>
       <div class="logo">
         <img src="images/logo.png" alt="">
-        <div class="companyName">Studie</div>
+        <div class="companyName">Shoppie</div>
       </div>
       <div class="nav-button-div">
-        <div class="button"><i class="fas fa-star"></i>Wish list</div>
         <div class="button"><i class="fas fa-heart"></i>Favorite</div>
+        <div class="button"><i class="fas fa-star"></i>Wish list</div>
         <div class="button"><i class="fas fa-clipboard-list"></i>To-do list</div>
         <div class="button"><i class="fas fa-user-circle"></i>Profile</div>
       </div>
@@ -117,8 +117,32 @@
     </section>
 
   </div>
-  <div class="form">
+  <div class="wrapper">
 
+    <div class="form">
+      <i class="fas fa-times form-close"></i>
+      <div class="title">Favorite list</div>
+      <div class="checkboxes"><label class="line">One
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      <label class="line">Two
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      <label class="line">Three
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      <label class="line">Four
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label></div>
+
+      <div class="update-btn">
+        <button>Update list</button>
+      </div>
+    </div>
   </div>
 </body>
 
