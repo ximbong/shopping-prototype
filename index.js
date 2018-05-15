@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   let toBuy = [];
   const wrapper = document.querySelector('.wrapper');
   const form = document.querySelectorAll('.form');
-  const body = document.querySelector('body');
+  const body = document.body;
 
   const displayPopup = (id) => {
     document.querySelector(`#${id} .checkboxes`).innerHTML = '';
@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           label.appendChild(span);
           document.querySelector("#favorite-form .checkboxes").appendChild(label);
         }
+
+        document.querySelector(".unlike-checkboxes").innerHTML = '';
       }
       if (section === "To-buy list") {
         displayPopup('to-buy-form');
@@ -118,11 +120,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
       if (e.target.classList.contains('unlike-btn')) {
         let unlikeList = document.querySelector("#favorite-form .checkboxes").querySelectorAll("input:checked");
+        let unlikeArray = [];
         for (let item of unlikeList) {
           element.querySelector(".unlike-checkboxes").appendChild(item.parentElement);
+          unlikeArray.push(item.parentElement.textContent);
           favoriteArray.splice(favoriteArray.indexOf(item.parentElement.textContent), 1);
-          console.log(favoriteArray)
-          }
+        }
+        let itemArray = Array.from(document.querySelectorAll(".content .details .name"));
+        unlikeArray.forEach(function(element) {
+          itemArray.forEach(function(item) {
+            if (element === item.textContent) {
+              const topParent = item.parentElement.parentElement.parentElement;
+              topParent.querySelector(".like").classList.remove('effect')
+            }
+          })
+        })
       }
       if (e.target.classList.contains('undo-btn')) {
         let undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
