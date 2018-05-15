@@ -19,19 +19,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   document.addEventListener("click", function(e) {
+
+    //if click on an action button
+
     if (e.target.classList.contains('action')) {
       const action = e.target.classList[2];
       e.target.classList.toggle('effect');
       const name = e.target.parentElement.parentElement.previousElementSibling.children[1].children[0].textContent;
+
       if (action === 'like') {
         if (favoriteArray.indexOf(name) === -1) {
           favoriteArray.push(name);
-          console.log(favoriteArray)
         } else {
           favoriteArray.splice(favoriteArray.indexOf(name), 1);
-          console.log(favoriteArray)
         }
       }
+
       if (action === 'add') {
         let removeIndex = -1;
         toBuy.forEach(function(item, index) {
@@ -39,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             removeIndex = index;
           }
         })
+
         if (removeIndex === -1) {
           toBuy.push({
             name: name,
@@ -48,8 +52,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
           toBuy.splice(removeIndex, 1)
         }
       }
-
     }
+
+    //if click on a form button
+
     if (e.target.classList.contains('button')) {
       const section = e.target.textContent;
       if (section === "Favorite") {
@@ -70,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
           label.appendChild(span);
           document.querySelector("#favorite-form .checkboxes").appendChild(label);
         }
-
         document.querySelector(".unlike-checkboxes").innerHTML = '';
       }
+
       if (section === "To-buy list") {
         displayPopup('to-buy-form');
 
@@ -97,14 +103,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   for (let element of form) {
     element.addEventListener("click", function(e) {
+
+      //if click on a close button
+
       if (e.target.classList.contains('form-close')) {
         hidePopup(element);
       }
+
+      //if click on a delete button in a to-buy list
+
       if (e.target.classList.contains('delete-item')) {
         const thisItem = e.target.parentElement;
         thisItem.remove();
-        console.log(thisItem)
       }
+
+      //if click on update buying list button
+
       if (e.target.classList.contains('update-tb')) {
         hidePopup(element);
         let newArray = [].slice.call(document.querySelectorAll("#to-buy-form .tb-details"));
@@ -118,6 +132,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
         toBuy = newArray;
       }
+
+      //if click on unlike button
+
       if (e.target.classList.contains('unlike-btn')) {
         let unlikeList = document.querySelector("#favorite-form .checkboxes").querySelectorAll("input:checked");
         let unlikeArray = [];
@@ -126,6 +143,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
           unlikeArray.push(item.parentElement.textContent);
           favoriteArray.splice(favoriteArray.indexOf(item.parentElement.textContent), 1);
         }
+
+        //smart like button (it updates the state of the like-unlike list)
+
         let itemArray = Array.from(document.querySelectorAll(".content .details .name"));
         unlikeArray.forEach(function(element) {
           itemArray.forEach(function(item) {
@@ -136,12 +156,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
           })
         })
       }
+
+        //if click on undo button
+
       if (e.target.classList.contains('undo-btn')) {
         let undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
         for (let item of undoList) {
           element.querySelector(".checkboxes").appendChild(item.parentElement);
           favoriteArray.push(item.parentElement.textContent);
-          console.log(favoriteArray)
         }
       }
     })
