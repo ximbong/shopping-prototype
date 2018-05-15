@@ -115,7 +115,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
           };
         })
         toBuy = newArray;
-        console.log(toBuy);
+      }
+      if (e.target.classList.contains('unlike-btn')) {
+        let unlikeList = document.querySelector("#favorite-form .checkboxes").querySelectorAll("input:checked");
+        for (let item of unlikeList) {
+          element.querySelector(".unlike-checkboxes").appendChild(item.parentElement);
+          favoriteArray.splice(favoriteArray.indexOf(item.parentElement.textContent), 1);
+          console.log(favoriteArray)
+          }
+      }
+      if (e.target.classList.contains('undo-btn')) {
+        let undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
+        for (let item of undoList) {
+          element.querySelector(".checkboxes").appendChild(item.parentElement);
+          favoriteArray.push(item.parentElement.textContent);
+          console.log(favoriteArray)
+        }
       }
     })
   }

@@ -169,14 +169,17 @@ section .title {
 
 .section-button-div i {
   font-weight: 600;
-  border: 1px solid #dfe3ee;
+  border: 1px solid #DFE3EE;
   border-radius: 50%;
   color: #8b9dc3;
 }
 
 .effect {
+  position:relative;
+  left:-1px;
+  top:-1px;
   color: #3a5998 !important;
-  border: 1px solid #3a5998 !important;
+  border: 2px solid #3a5998 !important;
 }
 
 .section-button-div .like {
@@ -206,16 +209,25 @@ section .title {
 }
 
 .form {
-
   background: #F7F7F7;
   min-width: 400px;
   padding: 40px 30px;
   border-radius: 5px;
   min-height: 450px;
   display: none;
-  flex-direction: column;
   justify-content: space-between;
   position: relative;
+}
+
+.form >div {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:0 20px;
+}
+
+#to-buy-form {
+  flex-direction: column;
 }
 
 .form .title {
@@ -325,26 +337,30 @@ section .title {
 }
 
 .tb-item {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
 
 .tb-details {
-  display:flex;
+  display: flex;
 }
 
-.tb-details >*{
-  margin-right:20px;
+.tb-details>* {
+  margin-right: 20px;
 }
 
 .tb-name {
-  min-width:100px;
+  min-width: 100px;
 }
 
 .tb-details input {
-  width:100px;
+  width: 100px;
 }
 
 .to-buy-list {
-  margin-bottom:20px;
+  margin-bottom: 20px;
+}
+
+.undo-btn {
+  background: #8B9DC3 !important;
 }
