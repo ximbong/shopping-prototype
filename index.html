@@ -19,20 +19,20 @@
         <div class="companyName">Shoppie</div>
       </div>
       <div class="nav-button-div">
-        <div class="button"><i class="fas fa-heart"></i>Favorite</div>
-        <div class="button"><i class="fas fa-star"></i>Wish list</div>
-        <div class="button"><i class="fas fa-clipboard-list"></i>To-do list</div>
+        <div class="button"><i class="fas fa-star"></i>Favorite</div>
+        <div class="button"><i class="fas fa-heart"></i>Wish list</div>
+        <div class="button"><i class="fas fa-clipboard-list"></i>To-buy list</div>
         <div class="button"><i class="fas fa-user-circle"></i>Profile</div>
       </div>
     </nav>
     <section id="big-img">
-      <div class="title">Do what you like action</div>
+      <div class="title">Unrelated Heading</div>
       <div class="explore-more">explore more</div>
     </section>
 
     <section id="feature-section">
       <div class="title">
-        Featured skills
+        Unrelated section
       </div>
       <div class="featured-items">
         <div class="item">
@@ -51,7 +51,7 @@
     </section>
 
     <section id="highest-rating">
-      <div class="title">Highest rating skills</div>
+      <div class="title">Highest rating items</div>
       <div class="highest-items">
         <div class="item">
           <div class="content">
@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="section-button-div">
-            <div class="button"><i class="far fa-star like action effect"></i></div>
+            <div class="button"><i class="far fa-star like action"></i></div>
             <div class="button"><i class="far fa-heart love action"></i></div>
             <div class="button"><i class="fas fa-plus add action"></i></div>
           </div>
@@ -72,7 +72,7 @@
           <div class="content">
             <img src="images/highest-1.jpg" alt="">
             <div class="details">
-              <div class="name">The boat</div>
+              <div class="name">The boat1</div>
               <div class="description">Lorem ipsum whatever </div>
               <div class="rating">Rating: 4.7</div>
             </div>
@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="section-button-div">
-            <div class="button"><i class="far fa-star like action effect"></i></div>
+            <div class="button"><i class="far fa-star like action"></i></div>
             <div class="button"><i class="far fa-heart love action"></i></div>
             <div class="button"><i class="fas fa-plus add action"></i></div>
           </div>
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="section-button-div">
-            <div class="button"><i class="far fa-star like action effect"></i></div>
+            <div class="button"><i class="far fa-star like action"></i></div>
             <div class="button"><i class="far fa-heart love action"></i></div>
             <div class="button"><i class="fas fa-plus add action"></i></div>
           </div>
@@ -118,31 +118,75 @@
 
   </div>
   <div class="wrapper">
-
-    <div class="form">
+    <div class="form" id="favorite-form">
       <i class="fas fa-times form-close"></i>
-      <div class="title">Favorite list</div>
-      <div class="checkboxes"><label class="line">One
-        <input type="checkbox" checked="checked">
-        <span class="checkmark"></span>
-      </label>
-      <label class="line">Two
-        <input type="checkbox">
-        <span class="checkmark"></span>
-      </label>
-      <label class="line">Three
-        <input type="checkbox">
-        <span class="checkmark"></span>
-      </label>
-      <label class="line">Four
-        <input type="checkbox">
-        <span class="checkmark"></span>
-      </label></div>
-
-      <div class="update-btn">
-        <button>Update list</button>
+      <div>
+        <div class="title">Favorite list</div>
+        <div class="checkboxes">
+        </div>
+        <div class="update-btn-div">
+          <button> Unlike items ?!</button>
+        </div>
+      </div>
+      <div>
+        <div class="title">In case you misclick</div>
+        <div class="checkboxes unlike">
+        </div>
+        <div class="update-btn-div">
+          <button> Undo what you just did</button>
+        </div>
       </div>
     </div>
+
+    <div class="form" id="to-buy-form">
+      <i class="fas fa-times form-close"></i>
+      <div>
+        <div class="title">To buy list</div>
+        <div class="checkboxes">
+          <div class="to-buy-list">
+            <div class="tb-item">
+              <div class="tb-details">
+                <div class="tb-name">Item name</div>
+                <input type="number">
+              </div>
+              <i class="fas fa-times delete-item"></i>
+            </div>
+          </div>
+          <div class="to-buy-list">
+            <div class="tb-item">
+              <div class="tb-details">
+                <div class="tb-name">Item name</div>
+                <input type="number">
+              </div>
+              <i class="fas fa-times delete-item"></i>
+            </div>
+          </div>
+          <div class="to-buy-list">
+            <div class="tb-item">
+              <div class="tb-details">
+                <div class="tb-name">Item name</div>
+                <input type="number">
+              </div>
+              <i class="fas fa-times delete-item"></i>
+            </div>
+          </div>
+          <div class="to-buy-list">
+            <div class="tb-item">
+              <div class="tb-details">
+                <div class="tb-name">Item name</div>
+                <input type="number">
+              </div>
+              <i class="fas fa-times delete-item"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="update-btn-div">
+        <button class='update-tb'>Update list</button>
+      </div>
+    </div>
+
   </div>
 </body>
 

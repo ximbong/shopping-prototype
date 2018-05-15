@@ -12,10 +12,14 @@ a {
   color: inherit;
 }
 
+i, .button, .explore-more {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .container {
@@ -195,22 +199,23 @@ section .title {
   position: fixed;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
 .form {
+
   background: #F7F7F7;
   min-width: 400px;
   padding: 40px 30px;
   border-radius: 5px;
-  min-height:450px;
-  display:flex;
+  min-height: 450px;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
-  position:relative;
+  position: relative;
 }
 
 .form .title {
@@ -299,7 +304,7 @@ section .title {
   transform: rotate(45deg);
 }
 
-.update-btn {
+.update-btn-div {
   text-align: center;
   margin-top: 40px;
 }
@@ -312,9 +317,34 @@ section .title {
 }
 
 .form .form-close {
-  color:#3B5998;
+  color: #3B5998;
   position: absolute;
-  font-size:140%;
-  top:20px;
-  right:20px;
+  font-size: 140%;
+  top: 20px;
+  right: 20px;
+}
+
+.tb-item {
+  display:flex;
+  justify-content: space-between;
+}
+
+.tb-details {
+  display:flex;
+}
+
+.tb-details >*{
+  margin-right:20px;
+}
+
+.tb-name {
+  min-width:100px;
+}
+
+.tb-details input {
+  width:100px;
+}
+
+.to-buy-list {
+  margin-bottom:20px;
 }
