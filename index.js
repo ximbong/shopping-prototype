@@ -18,6 +18,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     body.style.overflow = 'auto';
   }
 
+  const removeEffect = (element, action) => {
+    let itemArray = Array.from(document.querySelectorAll(".content .details .name"));
+    itemArray.forEach(function(item) {
+      if (element === item.textContent) {
+        const topParent = item.parentElement.parentElement.parentElement;
+        topParent.querySelector(`.${action}`).classList.remove('effect')
+      }
+    })
+  }
+
+
   document.addEventListener("click", function(e) {
 
     //if click on an action button
@@ -115,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       if (e.target.classList.contains('delete-item')) {
         const thisItem = e.target.parentElement;
         thisItem.remove();
+        const name = thisItem.querySelector('.tb-name').textContent;
+        removeEffect(name, 'add');
       }
 
       //if click on update buying list button
@@ -145,19 +158,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
 
         //smart like button (it updates the state of the like-unlike list)
-
-        let itemArray = Array.from(document.querySelectorAll(".content .details .name"));
         unlikeArray.forEach(function(element) {
-          itemArray.forEach(function(item) {
-            if (element === item.textContent) {
-              const topParent = item.parentElement.parentElement.parentElement;
-              topParent.querySelector(".like").classList.remove('effect')
-            }
-          })
+          removeEffect(element, 'like');
         })
       }
 
-        //if click on undo button
+      //if click on undo button
 
       if (e.target.classList.contains('undo-btn')) {
         let undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
