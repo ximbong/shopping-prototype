@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   let toBuy = [];
   const wrapper = document.querySelector('.wrapper');
   const form = document.querySelectorAll('.form');
+  const itemArray = Array.from(document.querySelectorAll(".content .details .name"));
   const body = document.body;
 
   const displayPopup = (id) => {
@@ -18,15 +19,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     body.style.overflow = 'auto';
   }
 
-  const removeEffect = (element, action) => {
-    let itemArray = Array.from(document.querySelectorAll(".content .details .name"));
+  const modifyEffect = (element, action, change) => {
     itemArray.forEach(function(item) {
       if (element === item.textContent) {
         const topParent = item.parentElement.parentElement.parentElement;
-        topParent.querySelector(`.${action}`).classList.remove('effect')
+        if (change === 'remove') {
+          topParent.querySelector(`.${action}`).classList.remove('effect')
+        } else {
+          topParent.querySelector(`.${action}`).classList.add('effect')
+        }
       }
     })
   }
+
 
 
   document.addEventListener("click", function(e) {
@@ -127,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const thisItem = e.target.parentElement;
         thisItem.remove();
         const name = thisItem.querySelector('.tb-name').textContent;
-        removeEffect(name, 'add');
+        modifyEffect(name, 'add', 'remove');
       }
 
       //if click on update buying list button
@@ -136,8 +141,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         hidePopup(element);
         let newArray = [].slice.call(document.querySelectorAll("#to-buy-form .tb-details"));
         newArray = newArray.map(function(item) {
-          let name = item.querySelector(".tb-name").textContent;
-          let number = item.querySelector("input").value;
+          const name = item.querySelector(".tb-name").textContent;
+          const number = item.querySelector("input").value;
           return {
             name: name,
             quantity: number
@@ -149,28 +154,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
       //if click on unlike button
 
       if (e.target.classList.contains('unlike-btn')) {
-        let unlikeList = document.querySelector("#favorite-form .checkboxes").querySelectorAll("input:checked");
-        let unlikeArray = [];
+        const unlikeList = document.querySelector("#favorite-form .checkboxes").querySelectorAll("input:checked");
+        const unlikeArray = [];
         for (let item of unlikeList) {
           element.querySelector(".unlike-checkboxes").appendChild(item.parentElement);
           unlikeArray.push(item.parentElement.textContent);
           favoriteArray.splice(favoriteArray.indexOf(item.parentElement.textContent), 1);
         }
 
-        //smart like button (it updates the state of the like-unlike list)
         unlikeArray.forEach(function(element) {
-          removeEffect(element, 'like');
+          modifyEffect(element, 'like', 'remove');
         })
       }
 
       //if click on undo button
 
       if (e.target.classList.contains('undo-btn')) {
-        let undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
+        const undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
+        const likeArray = [];
         for (let item of undoList) {
           element.querySelector(".checkboxes").appendChild(item.parentElement);
           favoriteArray.push(item.parentElement.textContent);
+          likeArray.push(item.parentElement.textContent);
         }
+
+        likeArray.forEach(function(element) {
+          modifyEffect(element, 'like', 'add');
+        })
       }
     })
   }
