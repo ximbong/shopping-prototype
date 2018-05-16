@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const itemArray = Array.from(document.querySelectorAll(".content .details .name"));
   const body = document.body;
 
+  //display popup with its ID
+
   const displayPopup = (id) => {
     document.querySelector(`#${id} .checkboxes`).innerHTML = '';
     document.getElementById(id).style.display = 'flex';
@@ -18,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     wrapper.style.display = 'none';
     body.style.overflow = 'auto';
   }
+
+  //modify effect on the related element
+  //(element = text inside the element, action = like/add, change = add/remove)
 
   const modifyEffect = (element, action, change) => {
     itemArray.forEach(function(item) {
@@ -32,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
   }
 
-
+  
 
   document.addEventListener("click", function(e) {
 

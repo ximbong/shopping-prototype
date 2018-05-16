@@ -19,7 +19,6 @@ i, .button, .explore-more {
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
-  overflow: auto;
 }
 
 .container {
@@ -151,7 +150,7 @@ section .title {
   justify-content: space-between;
 }
 
-.highest-items .details {
+.highest-items .details, .section-button-div  {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -159,12 +158,6 @@ section .title {
 
 .highest-items .content {
   display: flex;
-}
-
-.section-button-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .section-button-div i {
