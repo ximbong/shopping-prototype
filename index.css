@@ -117,18 +117,74 @@ section .title {
 .featured-items {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 15px;
+  grid-gap: 25px;
 }
 
 .featured-items .item {
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.75);
+  border: 2px solid #B7B7B7;
+  position: relative;
 }
 
-.featured-items .item>img {
+.featured-items .item>.content img {
   display: block;
   width: 100%;
+}
+
+.featured-items .item>.section-button-div, .featured-items .item>.content .details {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  flex-direction: row;
+  align-items: center;
+  background: #EAEAE8;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.featured-items .item>.section-button-div {
+  bottom: 60px;
+  height: 60px;
+}
+
+.featured-items .item>.content .details {
+  bottom: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #1E2122;
+}
+
+.featured-items .item:hover>.section-button-div, .featured-items .item:hover>.content .details {
+  opacity: 0.95;
+  display: flex;
+}
+
+.featured-items .item .section-button-div i {
+  border: 2px solid #8E9BC2;
+}
+
+.effect {
+  transition: color 0.4s;
+}
+
+.like.effect {
+  color: #EB7818;
+  border: 2px solid #EB7818 !important;
+}
+
+.love.effect {
+  color: #770010;
+  border: 2px solid #770010 !important;
+}
+
+.add.effect {
+  color: #323233;
+  border: 2px solid #323233 !important;
 }
 
 .highest-items .item img {
@@ -150,7 +206,7 @@ section .title {
   justify-content: space-between;
 }
 
-.highest-items .details, .section-button-div  {
+.highest-items .details, .section-button-div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -162,14 +218,9 @@ section .title {
 
 .section-button-div i {
   font-weight: 600;
-  border: 2px solid #F9F9F9;
+  border: 2px solid #8b9dc3;
   border-radius: 50%;
   color: #8b9dc3;
-}
-
-.effect {
-  color: #3a5998 !important;
-  border: 2px solid #3a5998 !important;
 }
 
 .section-button-div .like {
@@ -233,7 +284,7 @@ section .title {
 .form .title {
   font-size: 200%;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .line {
