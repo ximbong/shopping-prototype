@@ -298,6 +298,7 @@ section .title {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  transition:1s;
 }
 
 /* Hide the browser's default checkbox */

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  const favoriteArray = [];
+  let favoriteArray = [];
   let toBuy = [];
   const wrapper = document.querySelector('.wrapper');
   const form = document.querySelectorAll('.form');
@@ -37,7 +37,44 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
   }
 
+  const updateFav = (string) => {
+    const favString = favoriteArray.join('-');
+    localStorage.setItem('favString', favString);
+  }
 
+  const updateAdd = () => {
+    const toBuyClone = toBuy.map(function(element) {
+      return JSON.stringify(element);
+    })
+    const addString = toBuyClone.join('-');
+    localStorage.setItem('addString', addString);
+  }
+
+  const localStorageFav = () => {
+    const favString = localStorage.getItem('favString');
+    if (favString !== null) favoriteArray = favString.split("-");
+
+    for (let element of favoriteArray) {
+      modifyEffect(element, 'like', 'add');
+    }
+  }
+
+  const localStorageAdd = () => {
+    let addArray;
+    const addString = localStorage.getItem('addString');
+    if (addString !== null) {
+      addArray = addString.split("-");
+      toBuy = addArray.map(function(element) {
+        return JSON.parse(element)
+      })
+    }
+    for (let element of toBuy) {
+      modifyEffect(element.name, 'add', 'add');
+    }
+  }
+
+  localStorageFav();
+  localStorageAdd();
 
   document.addEventListener("click", function(e) {
 
@@ -54,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         } else {
           favoriteArray.splice(favoriteArray.indexOf(name), 1);
         }
+        updateFav();
       }
 
       if (action === 'add') {
@@ -73,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           toBuy.splice(removeIndex, 1)
         }
       }
+      updateAdd();
     }
 
     //if click on a form button
@@ -110,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             <div class="tb-item">
               <div class="tb-details">
                 <div class="tb-name">${element.name}</div>
-                <input type="number" value="${element.quantity}">
+                <input type="number" min="0" value="${element.quantity}">
               </div>
               <i class="fas fa-times delete-item"></i>
             </div>
@@ -154,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           };
         })
         toBuy = newArray;
+        updateAdd();
       }
 
       //if click on unlike button
@@ -166,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           unlikeArray.push(item.parentElement.textContent);
           favoriteArray.splice(favoriteArray.indexOf(item.parentElement.textContent), 1);
         }
-
+        updateFav();
         unlikeArray.forEach(function(element) {
           modifyEffect(element, 'like', 'remove');
         })
@@ -182,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           favoriteArray.push(item.parentElement.textContent);
           likeArray.push(item.parentElement.textContent);
         }
-
+        updateFav();
         likeArray.forEach(function(element) {
           modifyEffect(element, 'like', 'add');
         })
