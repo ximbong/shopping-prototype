@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const body = document.body;
 
   //display popup with its ID
-
   const displayPopup = (id) => {
     document.querySelector(`#${id} .checkboxes`).innerHTML = '';
     document.getElementById(id).style.display = 'flex';
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   //modify effect on the related element
   //(element = text inside the element, action = like/add, change = add/remove)
-
   const modifyEffect = (element, action, change) => {
     itemArray.forEach(function(item) {
       if (element === item.textContent) {
@@ -37,11 +35,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
   }
 
-  const updateFav = (string) => {
+  //update favorite array in localStorage
+  const updateFav = () => {
     const favString = favoriteArray.join('-');
     localStorage.setItem('favString', favString);
   }
 
+  //update toBuy array in localStorage
   const updateAdd = () => {
     const toBuyClone = toBuy.map(function(element) {
       return JSON.stringify(element);
@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     localStorage.setItem('addString', addString);
   }
 
+  //this function when page loads, which takes the favoriteArray in localStorage to replace the current one
   const localStorageFav = () => {
     const favString = localStorage.getItem('favString');
     if (favString !== null) favoriteArray = favString.split("-");
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
+  //this function when page loads, which takes the toBuy array in localStorage to replace the current one
   const localStorageAdd = () => {
     let addArray;
     const addString = localStorage.getItem('addString');
@@ -73,13 +75,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
+  //run these functions to 'reload' the last session
   localStorageFav();
   localStorageAdd();
 
   document.addEventListener("click", function(e) {
 
     //if click on an action button
-
     if (e.target.classList.contains('action')) {
       const action = e.target.classList[2];
       e.target.classList.toggle('effect');
@@ -115,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     //if click on a form button
-
     if (e.target.classList.contains('button')) {
       const section = e.target.textContent;
       if (section === "Favorite") {
@@ -165,13 +166,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     element.addEventListener("click", function(e) {
 
       //if click on a close button
-
       if (e.target.classList.contains('form-close')) {
         hidePopup(element);
       }
 
       //if click on a delete button in a to-buy list
-
       if (e.target.classList.contains('delete-item')) {
         const thisItem = e.target.parentElement;
         thisItem.remove();
@@ -180,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       //if click on update buying list button
-
       if (e.target.classList.contains('update-tb')) {
         hidePopup(element);
         let newArray = [].slice.call(document.querySelectorAll("#to-buy-form .tb-details"));
@@ -197,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       //if click on unlike button
-
       if (e.target.classList.contains('unlike-btn')) {
         const unlikeList = document.querySelector("#favorite-form .checkboxes").querySelectorAll("input:checked");
         const unlikeArray = [];
@@ -213,7 +210,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       //if click on undo button
-
       if (e.target.classList.contains('undo-btn')) {
         const undoList = document.querySelector("#favorite-form .unlike-checkboxes").querySelectorAll("input:checked");
         const likeArray = [];
@@ -231,9 +227,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   //smooth scrolling
-
   let anchorlinks = document.querySelectorAll('a[href^="#"]')
-
   for (let item of anchorlinks) { // relitere
     item.addEventListener('click', (e) => {
       let hashval = item.getAttribute('href')
