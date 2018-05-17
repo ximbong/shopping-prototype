@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //this function when page loads, which takes the favoriteArray in localStorage to replace the current one
   const localStorageFav = () => {
     const favString = localStorage.getItem('favString');
-    if (favString !== null) favoriteArray = favString.split("-");
+    if (favString) favoriteArray = favString.split("-");
 
     for (let element of favoriteArray) {
       modifyEffect(element, 'like', 'add');
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const localStorageAdd = () => {
     let addArray;
     const addString = localStorage.getItem('addString');
-    if (addString !== null) {
+    if (addString) {
       addArray = addString.split("-");
       toBuy = addArray.map(function(element) {
         return JSON.parse(element)

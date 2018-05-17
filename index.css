@@ -298,7 +298,7 @@ section .title {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition:1s;
+  transition: 1s;
 }
 
 /* Hide the browser's default checkbox */
@@ -414,4 +414,13 @@ section .title {
 
 .undo-btn {
   background: #8B9DC3 !important;
+}
+
+.not-allowed, .not-allowed * {
+  cursor: not-allowed;
+}
+
+.unlike-checkboxes .line {
+  transition:0.3s;
+  text-decoration: line-through;
 }
