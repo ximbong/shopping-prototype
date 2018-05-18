@@ -1,29 +1,25 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   let favoriteArray = [];
   let toBuy = [];
-  const wrapper = document.querySelector('.wrapper');
-  const form = document.querySelectorAll('.form');
-  const itemArray = Array.from(document.querySelectorAll(".content .details .name"));
-  const body = document.body;
 
   //display popup with its ID
   const displayPopup = (id) => {
     document.querySelector(`#${id} .checkboxes`).innerHTML = '';
     document.getElementById(id).style.display = 'flex';
-    wrapper.style.display = 'flex';
-    body.style.overflow = 'hidden';
+    document.querySelector('.wrapper').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
 
   const hidePopup = (element) => {
     element.style.display = 'none';
-    wrapper.style.display = 'none';
-    body.style.overflow = 'auto';
+    document.querySelector('.wrapper').style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
 
   //modify effect on the related element
   //(element = text inside the element, action = like/add, change = add/remove)
   const modifyEffect = (element, action, change) => {
-    itemArray.forEach(function(item) {
+     Array.from(document.querySelectorAll(".content .details .name")).forEach(function(item) {
       if (element === item.textContent) {
         const topParent = item.parentElement.parentElement.parentElement;
         if (change === 'remove') {
@@ -53,7 +49,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //this function when page loads, which takes the favoriteArray in localStorage to replace the current one
   const localStorageFav = () => {
     const favString = localStorage.getItem('favString');
-    if (favString) favoriteArray = favString.split("-");
+    if (favString)
+      favoriteArray = favString.split("-");
 
     for (let element of favoriteArray) {
       modifyEffect(element, 'like', 'add');
@@ -105,10 +102,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
 
         if (removeIndex === -1) {
-          toBuy.push({
-            name: name,
-            quantity: 1
-          })
+          toBuy.push({name: name, quantity: 1})
         } else {
           toBuy.splice(removeIndex, 1)
         }
@@ -144,8 +138,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         displayPopup('to-buy-form');
 
         for (let element of toBuy) {
-          document.querySelector(`#to-buy-form .checkboxes`).innerHTML +=
-            `
+          document.querySelector(`#to-buy-form .checkboxes`).innerHTML += `
           <div class="to-buy-list">
             <div class="tb-item">
               <div class="tb-details">
@@ -161,8 +154,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   })
 
-
-  for (let element of form) {
+  for (let element of document.querySelectorAll('.form')) {
     element.addEventListener("click", function(e) {
 
       //if click on a close button
@@ -185,10 +177,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         newArray = newArray.map(function(item) {
           const name = item.querySelector(".tb-name").textContent;
           const number = item.querySelector("input").value;
-          return {
-            name: name,
-            quantity: number
-          };
+          return {name: name, quantity: number};
         })
         toBuy = newArray;
         updateAdd();
@@ -232,9 +221,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     item.addEventListener('click', (e) => {
       let hashval = item.getAttribute('href')
       let target = document.querySelector(hashval)
-      target.scrollIntoView({
-        behavior: 'smooth'
-      })
+      target.scrollIntoView({behavior: 'smooth'})
       history.pushState(null, null, hashval)
       e.preventDefault()
     })
