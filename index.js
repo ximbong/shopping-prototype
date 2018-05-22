@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //modify effect on the related element
   //(element = text inside the element, action = like/add, change = add/remove)
   const modifyEffect = (element, action, change) => {
-     Array.from(document.querySelectorAll(".content .details .name")).forEach(function(item) {
+    Array.from(document.querySelectorAll(".content .details .name")).forEach(function(item) {
       if (element === item.textContent) {
         const topParent = item.parentElement.parentElement.parentElement;
         if (change === 'remove') {
@@ -59,10 +59,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   //this function when page loads, which takes the toBuy array in localStorage to replace the current one
   const localStorageAdd = () => {
-    let addArray;
     const addString = localStorage.getItem('addString');
     if (addString) {
-      addArray = addString.split("-");
+      const addArray = addString.split("-");
       toBuy = addArray.map(function(element) {
         return JSON.parse(element)
       })
@@ -85,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const name = e.target.parentElement.parentElement.previousElementSibling.children[1].children[0].textContent;
 
       if (action === 'like') {
+        //use includes method instead
         if (favoriteArray.indexOf(name) === -1) {
           favoriteArray.push(name);
         } else {
@@ -94,11 +94,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
 
       if (action === 'add') {
-        let removeIndex = -1;
-        toBuy.forEach(function(item, index) {
-          if ((item.name) === name) {
-            removeIndex = index;
-          }
+
+        const removeIndex = toBuy.findIndex(function(item) {
+          return (item.name) === name;
         })
 
         if (removeIndex === -1) {
